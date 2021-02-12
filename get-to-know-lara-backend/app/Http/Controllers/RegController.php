@@ -80,20 +80,20 @@ class RegController extends Controller
         return User::destroy($id);
     }
 
-    public function login(Request $request){
-        $data=[
+    public function login(Request $request)
+    {
+        $data = [
             'email' => $request->email,
             'password' => $request->password
         ];
 
-        if(auth()->attempt($data)){
+        if (auth()->attempt($data)) {
             $token = auth()->user()->createToken('LaravelAuthApp')->plainTextToken;
             return response()->json([
-                'token'=> $token,
-                'user'=>auth()->user(),
-            'message' => 'Hi'], 200);
-        }else{
-            return response()->json(['message'=> 'Not valiable login!'], 401);
+                'token' => $token,
+                'user' => auth()->user()
+            ], 200);
+        } else {
+            return response()->json(['error' => 'Unauthorised'], 401);
         }
-    }
-}
+    }}

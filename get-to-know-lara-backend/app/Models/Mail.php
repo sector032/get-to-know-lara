@@ -9,7 +9,7 @@ class Mail extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
+    protected $mails = [
         'subject',
         'message',
         'is_read',

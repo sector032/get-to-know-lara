@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmailController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
@@ -18,9 +19,14 @@ use App\Http\Controllers\RegController;
 */
 
 //Route::resource('registration', RegController::class);
-Route::post('login',[RegController::class, 'login']);
+Route::post('login', [RegController::class, 'login']);
+
 Route::post('registration',[RegController::class, 'registration']);
+Route::middleware('auth:sanctum')->get('/email', [EmailController::class, 'showEmails']);
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::middleware('auth:sanctum')->get('/inbox', [EmailController::class, 'showEmails']);
+
