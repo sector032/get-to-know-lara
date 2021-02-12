@@ -22,7 +22,8 @@ use App\Http\Controllers\RegController;
 Route::post('login', [RegController::class, 'login']);
 
 Route::post('registration',[RegController::class, 'registration']);
-Route::middleware('auth:sanctum')->get('/email', [EmailController::class, 'showEmails']);
+Route::middleware('auth:sanctum')->get('/mail/inbox', [EmailController::class, 'inboxEmails']);
+Route::middleware('auth:sanctum')->get('/mail/sent', [EmailController::class, 'sentEmails']);
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
