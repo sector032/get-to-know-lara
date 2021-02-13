@@ -24,6 +24,8 @@ class CreateMailsTable extends Migration
             $table->foreign('id_user_to')->references('id')->on('users');
             $table->timestamp('sent');
             $table->timestamp('created')->default(date('Y-m-d H:i:s'));
+            $table->unsignedBigInteger('user_id');
+
         });
     }
 
