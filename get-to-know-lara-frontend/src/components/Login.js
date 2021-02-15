@@ -26,8 +26,9 @@ const Login = (params) => {
 				console.log(response);
 				sessionStorage.setItem('token', response.data.token);
 				sessionStorage.setItem('username', response.data.user.name);
-				//window.location.href = '/';
-				alert(response.data.user.name);
+				sessionStorage.setItem('id', response.data.user.id);
+				window.location.href = '/mail/inbox';
+				alert('You logged in!');
 			})
 			.catch(function (error) {
 				alert(error);
