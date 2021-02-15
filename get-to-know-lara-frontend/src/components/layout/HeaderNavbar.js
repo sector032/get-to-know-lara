@@ -1,7 +1,6 @@
 import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import { Login } from '../Login';
 
 const HeaderNavbar = (props) => {
 	let loginText = 'You are not logged in!';

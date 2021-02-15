@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mail;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -12,7 +13,7 @@ class EmailController extends Controller
     {
         try {
             $user_id = auth()->user()->id;
-            $mail = Mail::where('id_user_to', $user_id)->orderBy('sent','asc')->get();
+            $mail = Mail::where('id_user_to', $user_id)->orderBy('sent','desc')->get();
             return response()->json([
                 'mail' => $mail,
                 'id' => $user_id,
@@ -27,7 +28,7 @@ class EmailController extends Controller
     {
         try {
             $user_id = auth()->user()->id;
-            $mail = Mail::where('id_user_from', $user_id)->orderBy('sent','asc')->get();
+            $mail = Mail::where('id_user_from', $user_id)->orderBy('sent','desc')->get();
             return response()->json([
                 'mail' => $mail,
                 'id' => $user_id
@@ -42,6 +43,7 @@ class EmailController extends Controller
     {
         try {
             $email = new Mail();
+            $user = new User();
             $email->id_user_from = auth()->user()->id;
             $email->id_user_to=$request->id_user_to;
             $email->subject=$request->subject;
@@ -68,6 +70,7 @@ class EmailController extends Controller
             $delete=Mail::where('id', $email_id)->where('id_user_to',$user_id)->delete();
             return response()->json([
                 'Message:' => 'Email deleted!',
+                'email:' => $email_id,
             ], 200);
         } catch (\Exception $e){
             Log::error($e->getMessage());

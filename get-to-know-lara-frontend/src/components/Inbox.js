@@ -4,6 +4,11 @@ import Table from 'react-bootstrap/Navbar';
 
 const Inbox = (params) => {
 	const [email, setUserEmail] = useState([]);
+	const [id, setID] = useState('');
+
+	// const handleDelete = (event) => {
+	// 	setID(event.target.value);
+	// };
 
 	let config = {
 		headers: {
@@ -19,6 +24,35 @@ const Inbox = (params) => {
 				setUserEmail(response.data.mail);
 			});
 	}, []);
+
+	// axios
+	// 		.post(
+	// 			'http://127.0.0.1:8000/api/mail/delete',
+	// 			{
+	// 				email_id: id,
+	// 			},
+	// 			config
+	// 		)
+	// 		.then((response) => {
+	// 			console.log(response);
+	// 		}
+	const handleDeleteEvent = (event) => {
+		event.preventDefault();
+		axios
+			.post(
+				'http://127.0.0.1:8000/api/mail/delete',
+				{
+					email_id: id,
+				},
+				config
+			)
+			.then((response) => {
+				alert('Deleted!');
+			})
+			.catch(function (error) {
+				alert(error);
+			});
+	};
 
 	const getEmails = () => {
 		if (email.length >= 0) {
@@ -36,6 +70,13 @@ const Inbox = (params) => {
 					{item.sent}
 					<br />
 					<br />
+					<input type='checkbox' checked={item.is_read} />
+					{item.is_read}
+					<br />
+					<br />
+					<button onClick={handleDeleteEvent} value={item.id}>
+						Delete
+					</button>
 				</div>
 			));
 		} else {
