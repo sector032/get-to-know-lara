@@ -17,14 +17,13 @@ class CreateMailsTable extends Migration
             $table->id();
             $table->string('subject');
             $table->string('message');
-            $table->boolean('is_read');
+            $table->boolean('is_read')->default(0);
             $table->unsignedBigInteger('id_user_from');
             $table->unsignedBigInteger('id_user_to');
             $table->foreign('id_user_from')->references('id')->on('users');
             $table->foreign('id_user_to')->references('id')->on('users');
             $table->timestamp('sent');
             $table->timestamp('created')->default(date('Y-m-d H:i:s'));
-            $table->unsignedBigInteger('user_id');
 
         });
     }

@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Mail extends Model
 {
     use HasFactory;
+    public $timestamps = false;
+
 
     protected $mails = [
         'subject',
@@ -16,7 +18,7 @@ class Mail extends Model
         'id_user_from',
         'id_user_to',
         'sent',
-        'created'
+        'created',
     ];
 
 
