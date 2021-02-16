@@ -43,7 +43,6 @@ class EmailController extends Controller
     {
         try {
             $email = new Mail();
-            $user = new User();
             $email->id_user_from = auth()->user()->id;
             $email->id_user_to=$request->id_user_to;
             $email->subject=$request->subject;
@@ -51,7 +50,7 @@ class EmailController extends Controller
             $email->save();
 
             return response()->json([
-                'email' => $email
+                'email' => $email,
             ], 200);
 
         } catch (\Exception $e) {
@@ -67,7 +66,7 @@ class EmailController extends Controller
         try{
             $user_id = auth()->user()->id;
             $email_id = $request->email_id;
-            $delete=Mail::where('id', $email_id)->where('id_user_to',$user_id)->delete();
+            $delete=Mail::where('id', $email_id)->delete();
             return response()->json([
                 'Message:' => 'Email deleted!',
                 'email:' => $email_id,
@@ -85,6 +84,20 @@ class EmailController extends Controller
             return response()->json([
                 'mail' => $mail,
                 'id' => $user_id
+            ], 200);
+
+        }catch (\Exception $e){
+            Log::error($e->getMessage());
+            return response()->json(['message' => 'Something went wrong'], 400);
+        }
+    }
+
+    public function unreadEmails(Request $request){
+        try{
+            $user_id = auth()->user()->id;
+            $mail=Mail::where('id_user_to', $user_id)->where('is_read','=', 1)->get();
+            return response()->json([
+                'mail' => $mail,
             ], 200);
 
         }catch (\Exception $e){

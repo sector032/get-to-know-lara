@@ -36,6 +36,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('/mail/send',[EmailController::class, 'sendingEmail']);
     Route::post('/mail/delete',[EmailController::class, 'removeEmail']);
     Route::get('/mail/all',[EmailController::class, 'allEmails']);
+    Route::get('/mail/mark-as-unread',[EmailController::class, 'unreadEmails']);
 });
 
 
