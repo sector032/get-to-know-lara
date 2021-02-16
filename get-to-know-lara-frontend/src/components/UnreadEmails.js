@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Table } from 'react-bootstrap';
 
-const Sent = (params) => {
+const UnreadEmails = (params) => {
 	const [email, setUserEmail] = useState([]);
 
 	let config = {
@@ -13,9 +13,8 @@ const Sent = (params) => {
 
 	useEffect(() => {
 		axios
-			.get('http://127.0.0.1:8000/api/mail/sent', config)
+			.get('http://127.0.0.1:8000/api/mail/mark-as-unread', config)
 			.then((response) => {
-				console.log(response.data.mail);
 				setUserEmail(response.data.mail);
 			});
 	}, []);
@@ -24,7 +23,8 @@ const Sent = (params) => {
 		if (email.length >= 0) {
 			return email.map((item) => (
 				<tr>
-					<td>{item.id}</td>
+					<td key={item.id}>{item.id}</td>
+					<td>{item.id_user_from}</td>
 					<td>{item.subject}</td>
 					<td>{item.message}</td>
 					<td>{item.sent}</td>
@@ -40,6 +40,7 @@ const Sent = (params) => {
 			<Table>
 				<tr>
 					<th>ID</th>
+					<th>From</th>
 					<th>Subject</th>
 					<th>Message</th>
 					<th>Sent</th>
@@ -50,4 +51,4 @@ const Sent = (params) => {
 	);
 };
 
-export default Sent;
+export default UnreadEmails;

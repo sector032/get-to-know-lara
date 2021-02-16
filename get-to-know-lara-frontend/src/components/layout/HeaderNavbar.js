@@ -33,6 +33,9 @@ const HeaderNavbar = (props) => {
 					<Nav.Link href='/mail/sent' name='sent'>
 						Sent
 					</Nav.Link>
+					<Nav.Link href='/mail/mark-as-unread' name='unread'>
+						Unread
+					</Nav.Link>
 					<Nav.Link href='/logout' onClick={handleLogout}>
 						Logout
 					</Nav.Link>

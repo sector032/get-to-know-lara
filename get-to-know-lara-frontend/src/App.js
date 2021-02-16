@@ -8,6 +8,7 @@ import MainPage from './components/MainPage';
 import Inbox from './components/Inbox';
 import Sent from './components/Sent';
 import Send from './components/Send';
+import Unread from './components/UnreadEmails';
 
 const App = () => {
 	return (
@@ -20,6 +21,7 @@ const App = () => {
 				<Route path='/mail/inbox' component={Inbox}></Route>
 				<Route path='/mail/sent' component={Sent}></Route>
 				<Route path='/mail/send' component={Send}></Route>
+				<Route path='/mail/mark-as-unread' component={Unread}></Route>
 			</Router>
 		</div>
 	);
