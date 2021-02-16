@@ -106,4 +106,19 @@ class EmailController extends Controller
         }
     }
 
+    public function updateEmail(Request $request){
+        try{
+            $user_id = auth()->user()->id;
+            $email_id = $request->email_id;
+            $mail=Mail::where('id', $email_id)->update(['is_read' =>'1']);
+            return response()->json([
+                'Message: ' => 'Email updated!',
+            ], 200);
+
+        }catch (\Exception $e){
+            Log::error($e->getMessage());
+            return response()->json(['message' => 'Something went wrong'], 400);
+        }
+    }
+
 }
