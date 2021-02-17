@@ -61,7 +61,7 @@ const Inbox = (params) => {
 	}, []);
 
 	const getEmails = () => {
-		if (email.length >= 0) {
+		if (email.length >= 1) {
 			return email.map((item) => (
 				<tr key={item.id}>
 					<td>{item.id}</td>

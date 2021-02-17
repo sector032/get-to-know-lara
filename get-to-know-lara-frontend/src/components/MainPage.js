@@ -1,13 +1,32 @@
 import React from 'react';
-import axios from 'axios';
+import { useAccordionToggle } from 'react-bootstrap';
 // const BodyStyle = styled.div`
 // 	background: red;
 // `;
 
 export default function MainPage() {
-	return (
-		<React.Fragment>
-			<h2>Hello</h2>
-		</React.Fragment>
-	);
+	let isLoggedIn = sessionStorage.getItem('token');
+	let user = sessionStorage.getItem('username');
+
+	const mainPage = () => {
+		if (isLoggedIn) {
+			return (
+				<center>
+					<h2>Welcome {user}!</h2>
+				</center>
+			);
+		} else {
+			return (
+				<center>
+					<h2>
+						Hello stranger! <br />
+						<br /> If you want to send emails you need to register or login
+						first!
+					</h2>
+				</center>
+			);
+		}
+	};
+
+	return <React.Fragment>{mainPage()}</React.Fragment>;
 }
