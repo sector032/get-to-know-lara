@@ -29,7 +29,6 @@ const Registration = (params) => {
 				password: userPassword,
 			})
 			.then((response) => {
-				console.log(response);
 				window.location.href = '/';
 			})
 			.catch(function (error) {
