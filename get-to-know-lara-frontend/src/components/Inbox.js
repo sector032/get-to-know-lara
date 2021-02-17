@@ -14,13 +14,13 @@ const Inbox = (params) => {
 			.post(
 				'http://127.0.0.1:8000/api/mail/mark-as-unread',
 				{
-					email_id: id,
+					email_id: checkbox,
 				},
 				config
 			)
 			.then((response) => {
 				console.log(response);
-				alert('Marked!');
+				//alert('Marked!');
 			})
 			.catch(function (error) {
 				alert(error);
@@ -71,7 +71,7 @@ const Inbox = (params) => {
 					<td>{item.sent}</td>
 					<td>
 						<input
-							value={item.is_read}
+							value={item.id}
 							onClick={handleCheckBox}
 							type='checkbox'
 						></input>

@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 
 const HeaderNavbar = (props) => {
 	let loginText = 'You are not logged in!';
@@ -16,30 +17,28 @@ const HeaderNavbar = (props) => {
 	};
 	return (
 		<React.Fragment>
-			<Navbar bg='dark' variant='dark'>
-				<Navbar.Brand href='/'>Email</Navbar.Brand>
-				<Nav className='mr-auto'>
-					<Nav.Link href='/home'>Home</Nav.Link>
-					<Nav.Link href='/login'>Login</Nav.Link>
-					<Nav.Link href='/register' name='register'>
-						Register
-					</Nav.Link>
-					<Nav.Link href='/mail/send' name='send'>
-						Send
-					</Nav.Link>
-					<Nav.Link href='/mail/inbox' name='inbox'>
-						Inbox
-					</Nav.Link>
-					<Nav.Link href='/mail/sent' name='sent'>
-						Sent
-					</Nav.Link>
-					<Nav.Link href='/mail/mark-as-unread' name='unread'>
-						Unread
-					</Nav.Link>
-					<Nav.Link href='/logout' onClick={handleLogout}>
-						Logout
-					</Nav.Link>
-				</Nav>
+			<Navbar bg='dark' variant='dark' expand='lg'>
+				<Navbar.Brand href='#home'>CoolMail</Navbar.Brand>
+				<Navbar.Toggle aria-controls='basic-navbar-nav' />
+				<Navbar.Collapse id='basic-navbar-nav'>
+					<Nav className='mr-auto'>
+						<Nav.Link href='/home'>Home</Nav.Link>
+						<Nav.Link href='/login'>Login</Nav.Link>
+						<Nav.Link href='/register'>Register</Nav.Link>
+						<NavDropdown title='Email' id='basic-nav-dropdown'>
+							<NavDropdown.Item href='/mail/send'>Send Email</NavDropdown.Item>
+							<NavDropdown.Item href='/mail/inbox'>Inbox</NavDropdown.Item>
+							<NavDropdown.Item href='/mail/sent'>Send</NavDropdown.Item>
+							<NavDropdown.Item href='/mail/mark-as-unread'>
+								Unread
+							</NavDropdown.Item>
+							<NavDropdown.Divider />
+							<NavDropdown.Item href='/logout' onClick={handleLogout}>
+								Logout
+							</NavDropdown.Item>
+						</NavDropdown>
+					</Nav>
+				</Navbar.Collapse>
 				{loginText}
 			</Navbar>
 		</React.Fragment>
