@@ -28,7 +28,7 @@ const HeaderNavbar = (props) => {
 						<NavDropdown title='Email' id='basic-nav-dropdown'>
 							<NavDropdown.Item href='/mail/send'>Send Email</NavDropdown.Item>
 							<NavDropdown.Item href='/mail/inbox'>Inbox</NavDropdown.Item>
-							<NavDropdown.Item href='/mail/sent'>Send</NavDropdown.Item>
+							<NavDropdown.Item href='/mail/sent'>Sent</NavDropdown.Item>
 							<NavDropdown.Item href='/mail/mark-as-unread'>
 								Unread
 							</NavDropdown.Item>

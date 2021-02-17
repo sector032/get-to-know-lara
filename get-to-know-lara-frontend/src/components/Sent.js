@@ -15,7 +15,6 @@ const Sent = (params) => {
 		axios
 			.get('http://127.0.0.1:8000/api/mail/sent', config)
 			.then((response) => {
-				console.log(response.data.mail);
 				setUserEmail(response.data.mail);
 			});
 	}, []);
@@ -23,7 +22,7 @@ const Sent = (params) => {
 	const getEmails = () => {
 		if (email.length >= 0) {
 			return email.map((item) => (
-				<tr>
+				<tr key={item.id}>
 					<td>{item.id}</td>
 					<td>{item.subject}</td>
 					<td>{item.message}</td>
@@ -38,13 +37,15 @@ const Sent = (params) => {
 	return (
 		<React.Fragment>
 			<Table>
-				<tr>
-					<th>ID</th>
-					<th>Subject</th>
-					<th>Message</th>
-					<th>Sent</th>
-				</tr>
-				{getEmails()}
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Subject</th>
+						<th>Message</th>
+						<th>Sent</th>
+					</tr>
+				</thead>
+				<tbody>{getEmails()}</tbody>
 			</Table>
 		</React.Fragment>
 	);

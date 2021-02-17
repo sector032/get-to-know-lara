@@ -63,8 +63,8 @@ const Inbox = (params) => {
 	const getEmails = () => {
 		if (email.length >= 0) {
 			return email.map((item) => (
-				<tr>
-					<td key={item.id}>{item.id}</td>
+				<tr key={item.id}>
+					<td>{item.id}</td>
 					<td>{item.id_user_from}</td>
 					<td>{item.subject}</td>
 					<td>{item.message}</td>
@@ -91,16 +91,18 @@ const Inbox = (params) => {
 	return (
 		<React.Fragment>
 			<Table>
-				<tr>
-					<th>ID</th>
-					<th>From</th>
-					<th>Subject</th>
-					<th>Message</th>
-					<th>Sent</th>
-					<th>Unread</th>
-					<th>Delete</th>
-				</tr>
-				{getEmails()}
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>From</th>
+						<th>Subject</th>
+						<th>Message</th>
+						<th>Sent</th>
+						<th>Unread</th>
+						<th>Delete</th>
+					</tr>
+				</thead>
+				<tbody>{getEmails()}</tbody>
 			</Table>
 		</React.Fragment>
 	);
