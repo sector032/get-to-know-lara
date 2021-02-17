@@ -13,7 +13,7 @@ class EmailController extends Controller
     {
         try {
             $user_id = auth()->user()->id;
-            $mail = Mail::where('id_user_to', $user_id)->orderBy('sent','desc')->get();
+            $mail = Mail::where('id_user_to', $user_id)->where('is_read','=', 0)->orderBy('sent','desc')->get();
             return response()->json([
                 'mail' => $mail,
                 'id' => $user_id,
@@ -113,6 +113,7 @@ class EmailController extends Controller
             $mail=Mail::where('id', $email_id)->update(['is_read' =>'1']);
             return response()->json([
                 'Message: ' => 'Email updated!',
+                'emailid:' => $email_id
             ], 200);
 
         }catch (\Exception $e){
