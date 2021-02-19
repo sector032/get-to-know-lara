@@ -4,36 +4,30 @@ import { Table } from 'react-bootstrap';
 
 const Inbox = (params) => {
 	const [email, setUserEmail] = useState([]);
-	const [id, setID] = useState('');
-	const [checkbox, setCheckbox] = useState('');
 
-	const handleCheckBox = (event) => {
-		setCheckbox(event.target.value);
-
+	const handleCheckBox = (checkboxID) => {
 		axios
 			.post(
 				'http://127.0.0.1:8000/api/mail/mark-as-unread',
 				{
-					email_id: checkbox,
+					email_id: checkboxID,
 				},
 				config
 			)
 			.then((response) => {
 				console.log(response);
-				//alert('Marked!');
 			})
 			.catch(function (error) {
 				alert(error);
 			});
 	};
 
-	const handleDelete = (event) => {
-		setID(event.target.value);
+	const handleDelete = (delID) => {
 		axios
 			.post(
 				'http://127.0.0.1:8000/api/mail/delete',
 				{
-					email_id: id,
+					email_id: delID,
 				},
 				config
 			)
@@ -72,12 +66,20 @@ const Inbox = (params) => {
 					<td>
 						<input
 							value={item.id}
-							onClick={handleCheckBox}
+							onClick={() => {
+								handleCheckBox(item.id);
+							}}
 							type='checkbox'
 						></input>
 					</td>
 					<td>
-						<button value={item.id} onClick={handleDelete}>
+						<button
+							value={item.id}
+							onClick={() => {
+								console.log(item.id);
+								handleDelete(item.id);
+							}}
+						>
 							Delete
 						</button>
 					</td>

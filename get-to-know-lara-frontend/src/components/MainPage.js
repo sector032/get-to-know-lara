@@ -1,8 +1,5 @@
 import React from 'react';
 import { useAccordionToggle } from 'react-bootstrap';
-// const BodyStyle = styled.div`
-// 	background: red;
-// `;
 
 export default function MainPage() {
 	let isLoggedIn = sessionStorage.getItem('token');
