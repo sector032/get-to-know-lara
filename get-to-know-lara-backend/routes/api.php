@@ -38,6 +38,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/mail/all',[EmailController::class, 'allEmails']);
     Route::get('/mail/mark-as-unread',[EmailController::class, 'unreadEmails']);
     Route::post('/mail/mark-as-unread',[EmailController::class, 'updateEmail']);
+    Route::get('/mail/dumpster',[EmailController::class, 'recycleBin']);
 });
 
 
