@@ -16,7 +16,7 @@ After you opened the repository, run "npm install". If it's installed all of the
 ## Backend
 
 First use "composer install" command to install all dependencies.
-There is a .env.example file in the repository. You need to copy it and delete a .example. After that please fill the following rows:
+There is a .env.example file in the repository. You need to copy it and delete the ".example" part. After that please fill the following rows:
 
 DB_CONNECTION=mysql<br>
 DB_HOST=127.0.0.1<br>
