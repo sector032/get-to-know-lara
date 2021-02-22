@@ -18,12 +18,12 @@ After you opened the repository, run "npm install". If it's installed all of the
 First use "composer install" command to install all dependencies.
 There is a .env.example file in the repository. You need to copy it and delete a .example. After that please fill the following rows:
 
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=laravel
-DB_USERNAME=root
-DB_PASSWORD=
+DB_CONNECTION=mysql<br>
+DB_HOST=127.0.0.1<br>
+DB_PORT=3306<br>
+DB_DATABASE=laravel<br>
+DB_USERNAME=root<br>
+DB_PASSWORD=<br>
 
 After that use "php artisan migrate" command, if its done use "php artisan serve" command to run the application.
 
