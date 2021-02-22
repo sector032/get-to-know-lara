@@ -44,7 +44,7 @@ const HeaderNavbar = (props) => {
 						)}
 					</Nav>
 				</Navbar.Collapse>
-				{loginText}
+				<span style={{ color: 'white' }}>{loginText}</span>
 			</Navbar>
 		</React.Fragment>
 	);
